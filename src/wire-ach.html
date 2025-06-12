@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="images/boa-favicon.png"
+      type="image/x-icon"
+    />
+    <link href="./output.css" rel="stylesheet" />
+    <title>Bank of America - Wire/ACH Transfer</title>
+  </head>
+  <body
+    class="bg-white min-h-screen flex flex-col font-arial text-gray-700 relative"
+  >
+    <header class="bg-red-600 text-white py-4 px-5 md:px-10">
+      <div
+        class="max-w-screen-xl mx-auto lg:flex lg:items-center lg:justify-between text-xs"
+      >
+        <!-- Logo Header -->
+        <div
+          class="flex items-center justify-between lg:justify-center lg:space-x-5 mb-2 md:mb-0"
+        >
+          <img
+            src="images/boa-logo-white.png"
+            alt="Bank of America Logo"
+            class="h-auto lg:w-72 w-56"
+          />
+
+          <div id="menu-toggle" class="cursor-pointer lg:hidden">
+            <span id="menu-open" class="material-icons" style="font-size: 27px">
+              menu
+            </span>
+            <span
+              id="menu-close"
+              class="material-icons menu-hidden"
+              style="font-size: 27px"
+            >
+              close
+            </span>
+          </div>
+
+          <span class="text-lg hidden lg:block">Wire/ACH Transfer</span>
+        </div>
+
+        <!-- Profile & Search Bar -->
+        <div
+          class="hidden lg:flex flex-wrap items-center justify-center md:justify-end gap-x-2.5 gap-y-1"
+        >
+          <span class="text-base font-semibold border-r-2 pr-2.5"
+            >Matthew Rife</span
+          >
+          <a
+            href="profile.html"
+            class="hover:underline cursor-pointer font-verdana"
+            >Profile & Settings</a
+          >
+          <a href="#" class="hover:underline cursor-pointer font-verdana"
+            >Saved Items</a
+          >
+          <a href="#" class="hover:underline cursor-pointer font-verdana"
+            >Log Out</a
+          >
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              class="bg-red-500 font-verdana text-white tracking-wide placeholder-gray-50 rounded-md p-2 pr-8 text-xs focus:outline-none focus:ring-1 focus:ring-white"
+            />
+            <span
+              class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white text-base cursor-pointer"
+              style="font-size: 19px"
+              >search</span
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white py-3 px-4 md:px-8">
+      <!-- Tabs -->
+      <div
+        class="hidden max-w-screen-xl mx-auto lg:flex flex-col md:flex-row items-center justify-between"
+      >
+        <ul
+          id="main-nav-tabs"
+          class="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-sm font-semibold text-gray-700 border-b border-gray-200 w-full md:w-auto"
+        >
+          <li>
+            <a
+              href="#send"
+              data-tab="send-tab"
+              class="block py-2 px-3 hover:text-red-600 hover:scale-110"
+              >Make Transfer</a
+            >
+          </li>
+          <li>
+            <a
+              href="#activity"
+              data-tab="activity-tab"
+              class="block py-2 px-3 hover:text-red-600 hover:scale-110"
+              >Transfer Activity</a
+            >
+          </li>
+          <li>
+            <a
+              href="#recipient"
+              data-tab="recipient-tab"
+              class="block py-2 px-3 hover:text-red-600 hover:scale-110"
+              >Add Recipient</a
+            >
+          </li>
+          <li>
+            <a
+              href="#manage"
+              data-tab="manage-tab"
+              class="block py-2 px-3 hover:text-red-600 hover:scale-110"
+              >Manage Recipients</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mobile sidebar -->
+      <div
+        id="sidebar"
+        class="flex items-start flex-col text-white space-y-4 px-7 top-0 left-0 z-30 w-10/12 sm:w-80 h-full box-border bg-red-600 fixed transform transition-transform -translate-x-full duration-300 ease-in-out"
+      >
+        <span class="w-48 my-8"
+          ><img src="images/boa-logo-white.png" alt="Executive Managers Logo"
+        /></span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">sync_alt</span>
+          <a href="#send" data-tab="send-tab" class="text-base font-bold"
+            >Make Transfer</a
+          >
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">list_alt</span>
+          <a
+            href="#activity"
+            data-tab="activity-tab"
+            class="text-base font-bold"
+            >Transfer Activity</a
+          >
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">person_add</span>
+          <a
+            href="#recipient"
+            data-tab="recipient-tab"
+            class="text-base font-bold"
+            >Add Recipient</a
+          >
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">manage_accounts</span>
+          <a href="#manage" data-tab="manage-tab" class="text-base font-bold"
+            >Manage Recipients</a
+          >
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5 mt-2.5">
+          <span class="material-symbols-outlined">person</span>
+          <a href="profile.html" class="text-base font-bold">Profile</a>
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">logout</span>
+          <a href="index.html"><p class="text-base font-bold">Logout</p></a>
+        </span>
+      </div>
+    </nav>
+
+    <!-- Tab Content -->
+    <main
+      class="flex-grow lg:max-w-11/12 mx-auto pb-5 pt-1.5 px-3 md:px-4 lg:px-6"
+    >
+      <!-- Make Transfer Tab -->
+      <div id="send-tab" class="flex flex-col lg:flex-row lg:space-x-5">
+        <!-- Transfer Form -->
+        <div
+          id="make-transfer-content"
+          class="flex-grow bg-white px-2 pt-0 pb-4 lg:p-6 lg:pt-2 lg:mb-0"
+        >
+          <!-- Header -->
+          <h2 class="text-2xl lg:text-3xl font-bold mb-5 lg:mb-7 ml-0.5">
+            Send a Wire/ACH Transfer
+          </h2>
+
+          <!-- Sender Account -->
+          <div class="mb-5 pb-4 border-b border-gray-200">
+            <div
+              class="flex flex-col items-start justify-start space-x-2 w-11/12 lg:w-6/12"
+            >
+              <span class="text-gray-800 text-lg font-bold mb-1.5">From</span>
+              <div class="flex items-center justify-between w-full">
+                <select
+                  id="fromAccount"
+                  class="flex-grow border border-gray-300 rounded-md p-2 cursor-pointer"
+                >
+                  <option id="checking-acct-balance"></option>
+                  <option id="savings-acct-balance"></option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recipient Account -->
+          <div class="mb-5 pb-2 border-b border-gray-200">
+            <div
+              class="flex flex-col items-start justify-start space-x-2 w-11/12 lg:w-[71.8%] mb-2"
+            >
+              <span class="text-gray-800 text-lg font-bold mb-1.5">To</span>
+              <div
+                class="flex flex-col justify-start space-y-2 md:flex-row md:items-center md:justify-between w-full md:space-x-3"
+              >
+                <select
+                  id="recipient"
+                  class="flex-grow border border-gray-300 rounded-md p-2 cursor-pointer"
+                >
+                  <option>ROBIN BROWN (USA Bank)</option>
+                </select>
+                <a
+                  href="?tab=recipient-tab"
+                  class="text-blue-500 hover:underline underline-offset-2 whitespace-nowrap ml-2 lg:ml-0"
+                  >Add account/recipient</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery Speed -->
+          <div class="mb-5 bg-gray-100 p-3.5 lg:p-5 rounded-xs">
+            <p class="text-sm text-gray-600 mb-3">
+              Delivery speed:
+              <a
+                href="#"
+                class="text-blue-500 hover:underline underline-offset-2"
+                >Learn more about your delivery speed types, fees and limits.</a
+              >
+            </p>
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <input
+                  type="radio"
+                  id="nextBusinessDay"
+                  name="deliverySpeed"
+                  value="nextBusinessDay"
+                  class="form-radio h-4 w-4 text-blue-500 cursor-pointer"
+                />
+                <label for="nextBusinessDay" class="ml-2 text-gray-700 text-sm">
+                  Next business day, $0 fee,
+                  <span class="font-bold">ACH Transfer</span>, 8 PM ET cutoff
+                  time
+                </label>
+              </div>
+              <div class="flex items-center">
+                <input
+                  type="radio"
+                  id="sameBusinessDay"
+                  name="deliverySpeed"
+                  value="sameBusinessDay"
+                  class="form-radio h-4 w-4 text-blue-500 cursor-pointer"
+                  checked
+                />
+                <label for="sameBusinessDay" class="ml-2 text-gray-700 text-sm">
+                  Same business day, $30 fee,
+                  <span class="font-bold">Wire Transfer</span>, 5 PM ET cutoff
+                  time, most often required for real estate closings; money is
+                  not recoverable; similar to using a cashier's check to get
+                  final funds to a recipient
+                </label>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="text-blue-500 hover:underline text-sm mt-3 block underline-offset-2"
+              >Learn more about ACH and wire transfers</a
+            >
+          </div>
+
+          <!-- Amount -->
+          <div class="mb-5 w-8/12 lg:w-4/12">
+            <label for="amount" class="block font-semibold text-gray-700 mb-1"
+              >Amount *</label
+            >
+            <div class="flex items-center border border-gray-300 rounded-md">
+              <span class="text-gray-700 p-2">$</span>
+              <input
+                type="number"
+                id="amount"
+                class="flex-grow p-2 focus:outline-none rounded-r-md"
+                placeholder="1000.00"
+                min="1000"
+                step="500"
+              />
+            </div>
+            <a href="#required-notice" class="cursor-none"
+              ><p id="required-notice" class="mt-1 text-red-600 text-sm hidden">
+                <span class="text-base font-semibold">*</span>This is a required
+                field!
+              </p></a
+            >
+          </div>
+
+          <!-- Frequency -->
+          <div class="mb-5 w-8/12 lg:w-4/12">
+            <label
+              for="frequency"
+              class="block font-semibold text-gray-700 mb-1"
+              >Frequency*</label
+            >
+            <select
+              id="frequency"
+              class="w-full border border-gray-300 rounded-md p-2 text-gray-700 cursor-pointer"
+            >
+              <option>One time, immediately</option>
+              <option>One time, scheduled</option>
+              <option>Weekly</option>
+              <option>Every 2 weeks</option>
+              <option>Monthly</option>
+              <option>Monthly, first business day</option>
+              <option>Monthly, last business day</option>
+              <option>Every 3 months</option>
+              <option>Every 6 months</option>
+              <option>Annually</option>
+            </select>
+
+            <!-- Date Picker -->
+            <label
+              for="date-picker"
+              class="hidden font-semibold text-gray-700 mb-1"
+              >Select Date*</label
+            >
+            <input
+              type="date"
+              id="date-picker"
+              class="hidden flex-grow p-2 focus:outline-none rounded-r-md"
+            />
+          </div>
+
+          <!-- Estimated Dates -->
+          <div class="mb-5 bg-gray-100 p-3 pl-4 lg:p-5 lg:pl-7 rounded-xs">
+            <p class="mb-2.5">
+              <span class="font-bold">Start on date:</span>
+              <span id="estimated-start-date"></span>
+            </p>
+            <p>
+              <span class="font-bold">Estimated arrival date:</span>
+              <span id="estimated-end-date"></span>
+            </p>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-8 lg:mb-10">
+            <label
+              for="description"
+              class="block font-semibold text-gray-700 mb-1"
+            >
+              Description<span class="font-normal text-gray-500 ml-1 text-sm"
+                >(optional)</span
+              >
+              <a
+                href="#"
+                class="text-blue-600 hover:underline text-xs lg:text-sm ml-2"
+                >What's this for?</a
+              >
+            </label>
+            <input
+              type="text"
+              id="description"
+              class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              placeholder="Home Closing"
+            />
+            <p class="text-xs lg:text-sm text-gray-500 mt-1 ml-1.5">
+              Please do not use special characters: % &lt; &gt; ' / &amp;
+            </p>
+          </div>
+
+          <!-- Make transfer buttons -->
+          <div class="flex justify-start ml-1.5 lg:ml-0 space-x-4">
+            <button
+              id="continue-transfer-btn"
+              class="cursor-pointer text-sm lg:text-base bg-blue-600 text-white font-semibold py-2.5 px-5 lg:px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Continue Transfer
+            </button>
+            <button
+              id="cancel-transfer-btn"
+              class="cursor-pointer text-sm lg:text-base bg-gray-200 text-gray-700 font-semibold py-2.5 px-5 lg:px-6 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+            >
+              Cancel
+            </button>
+          </div>
+
+          <!-- Scam Reminder Popup -->
+          <div
+            id="scam-reminder-overlay"
+            class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+          >
+            <!-- Popup Content -->
+            <div
+              class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-auto relative"
+            >
+              <h3 class="text-lg font-bold text-red-600 mb-4 border-b pb-2">
+                Be on the lookout for scams
+              </h3>
+              <p class="text-sm text-gray-700 mb-4">
+                Once you send money, there's little we can do to get it back for
+                you. Here are some red flags of a scam:
+              </p>
+              <ul
+                class="list-disc list-inside text-sm text-gray-700 mb-6 space-y-2"
+              >
+                <li>You're pressured to act quickly.</li>
+                <li>
+                  You're asked to deposit a check from someone you never met,
+                  then send some or all of the money back out.
+                </li>
+                <li>
+                  Your recipient's one account number changes last minute or
+                  arrives via email (particularly at home closings).
+                </li>
+              </ul>
+              <p class="text-sm text-gray-700 mb-6">
+                If you're concerned this transfer may be part of a scam, please
+                <span class="font-bold">Cancel</span> and verify your
+                recipient's account information using a trusted phone number.
+              </p>
+
+              <!-- Buttons -->
+              <div class="flex justify-end space-x-4">
+                <button
+                  id="scam-popup-continue-btn"
+                  class="bg-blue-600 cursor-pointer text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Continue
+                </button>
+                <button
+                  id="scam-popup-cancel-btn"
+                  class="bg-gray-200 cursor-pointer text-gray-700 font-semibold py-2 px-4 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Confirm Details Popup-->
+          <div
+            id="confirm-details-overlay"
+            class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+          >
+            <!-- Popup Content -->
+            <div
+              class="bg-white rounded-lg shadow-xl py-6 px-4 lg:p-6 w-full max-w-lg mx-auto relative"
+            >
+              <!-- Header -->
+              <p
+                class="text-sm lg:text-base text-gray-700 mb-6 text-center border-b-[1.5px] border-b-gray-200 pb-1.5"
+              >
+                If you authorize this transfer, select
+                <span class="font-bold">"Make Transfer"</span>, otherwise select
+                <span class="font-bold">"Don't Make Transfer"</span>.
+              </p>
+
+              <!-- Transfer details -->
+              <div class="text-gray-700 text-sm lg:text-base space-y-3 mb-8 px-2 lg:px-0">
+                <div class="flex">
+                  <p class="font-semibold w-1/3">From:</p>
+                  <p id="confirm-account-source" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">To:</p>
+                  <p id="confirm-recipient" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">Delivery speed:</p>
+                  <p id="confirm-delivery-speed" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">Amount:</p>
+                  <p id="confirm-amount" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">Fee:</p>
+                  <p id="confirm-delivery-fee" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">Frequency:</p>
+                  <p id="confirm-frequency" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">Start date:</p>
+                  <p id="confirm-start-date" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">Arrival date:</p>
+                  <p id="confirm-end-date" class="w-2/3"></p>
+                </div>
+                <div class="flex">
+                  <p class="font-semibold w-1/3">Description:</p>
+                  <p id="confirm-description" class="w-2/3"></p>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div
+                class="flex flex-col space-y-2 md:flex-row justify-center md:space-x-4 px-6 lg:px-0"
+              >
+                <button
+                  id="make-transfer-final-btn"
+                  class="cursor-pointer bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Make Transfer
+                </button>
+                <button
+                  id="dont-make-transfer-btn"
+                  class="cursor-pointer bg-gray-200 text-gray-700 font-semibold py-2 px-6 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+                >
+                  Don't Make Transfer
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading Spinner Popup -->
+          <div
+            id="loading-spinner"
+            class="hidden fixed inset-0 items-center justify-center bg-black bg-opacity-50 z-50 backdrop-blur-sm"
+          >
+            <!-- Popup Content -->
+            <div
+              class="flex flex-col items-center bg-white px-4 py-6 rounded-lg shadow-xl"
+            >
+              <img
+                src="images/spinner.png"
+                alt="Loading"
+                class="w-12 h-12 animate-spin"
+              />
+              <p class="text-gray-600 mt-3 font-semibold text-sm">
+                Processing, please wait...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Help -->
+        <div
+          class="w-[95%] mt-2.5 lg:mt-0 mx-auto lg:w-5/12 bg-white border border-gray-200 p-6 lg:p-5 rounded-lg shadow-sm hover:shadow-md lg:self-start"
+        >
+          <h3
+            class="font-bold text-lg mb-3 text-gray-500 border-b border-b-gray-300 pb-1.5"
+          >
+            Quick Help
+          </h3>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Defend against Fraud - Visit Security Center</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Types of Transfers, delivery speeds, fees & fees</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Video: How to send a domestic wire transfer?</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Video: How to send an international wire transfer?</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">FX Guide</a>
+            </li>
+            <li><a href="#" class="text-blue-600 hover:underline">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Success Popup -->
+        <div
+          id="close-transfer-success-overlay"
+          class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden items-center justify-center z-50 p-2.5 lg:p-4"
+        >
+          <div
+            class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm mx-auto relative text-center"
+          >
+            <div
+              class="flex items-center justify-center w-28 h-28 rounded-full bg-green-200 mx-auto mb-4"
+            >
+              <div
+                class="flex items-center justify-center w-24 h-24 rounded-full bg-green-400"
+              >
+                <span
+                  class="material-symbols-outlined text-white"
+                  style="font-size: 60px"
+                >
+                  check
+                </span>
+              </div>
+            </div>
+
+            <h3 class="text-3xl font-bold text-green-400 mb-1.5">Success!</h3>
+            <p class="text-base font-medium text-gray-700 mb-6">
+              Your transfer request has been submitted. Once it is complete, a
+              confirmation mail will be sent to your email.
+            </p>
+
+            <button
+              id="close-transfer-success-btn"
+              class="cursor-pointer tracking-wider bg-blue-600 text-white font-semibold py-3 px-8 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Finish
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transfer Activity Tab -->
+      <div id="activity-tab">
+        <h2 class="text-2xl font-bold mb-4">Transfer Activity</h2>
+      </div>
+
+      <!-- Add Recipient Tab -->
+      <div id="recipient-tab" class="flex flex-col lg:flex-row lg:space-x-5">
+        <!-- Add Recipient Form -->
+        <div class="flex-grow bg-white px-2 pt-0 pb-4 lg:pb-6 lg:pt-2 lg:mb-0">
+          <!-- Header -->
+          <h2 class="text-2xl lg:text-3xl font-bold mb-5 lg:mb-7 ml-1">
+            Add Account/Recipient
+          </h2>
+
+          <!-- Recipient Type -->
+          <div class="mb-6 border-b-[1.5px] pb-4 border-gray-200 px-1">
+            <div class="flex items-center space-x-6">
+              <label class="flex items-center">
+                <input
+                  type="radio"
+                  class="form-radio h-4 w-4 text-blue-600 cursor-pointer"
+                  name="transferType"
+                  value="domestic"
+                  checked
+                />
+                <span class="ml-2 text-gray-700 text-sm">Domestic (U.S.)</span>
+              </label>
+
+              <label class="flex items-center">
+                <input
+                  type="radio"
+                  class="form-radio h-4 w-4 text-blue-600 cursor-pointer"
+                  name="transferType"
+                  value="international"
+                />
+                <span class="ml-2 text-gray-700 text-sm">International</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Account Type -->
+          <div class="mb-6 border-b-[1.5px] pb-4 border-gray-200 px-1">
+            <p class="text-base font-semibold mb-3">
+              What type of account is it? *
+            </p>
+
+            <div class="space-y-3">
+              <label class="inline-flex items-center w-full">
+                <input
+                  type="radio"
+                  class="form-radio h-4 w-4 text-blue-600 cursor-pointer"
+                  name="accountType"
+                  value="myPersonalAnotherBankOnlyTransfersTo"
+                  checked
+                />
+                <span class="ml-2 text-gray-700 text-sm"
+                  >My personal account at another bank (only transfers to)</span
+                >
+              </label>
+
+              <label class="inline-flex items-center w-full">
+                <input
+                  type="radio"
+                  class="form-radio h-4 w-4 text-blue-600 cursor-pointer"
+                  name="accountType"
+                  value="myPersonalAnotherBankTransfersToAndFrom"
+                />
+                <span class="ml-2 text-gray-700 text-sm"
+                  >My personal account at another bank (for transfers to and
+                  from)</span
+                >
+              </label>
+
+              <label class="inline-flex items-center w-full">
+                <input
+                  type="radio"
+                  class="form-radio h-4 w-4 text-blue-600 cursor-pointer"
+                  name="accountType"
+                  value="someoneElsePersonalAnotherBankOnlyTransfersTo"
+                />
+                <span class="ml-2 text-gray-700 text-sm"
+                  >Someone else's personal account at another bank (only
+                  transfers to)</span
+                >
+              </label>
+            </div>
+          </div>
+
+          <!-- Personal Info -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 border-b-[1.5px] pb-6 px-1 border-gray-200"
+          >
+            <!-- First name -->
+            <div>
+              <label
+                for="firstName"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >First name *</label
+              >
+              <input
+                type="text"
+                id="firstName"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- Last name -->
+            <div>
+              <label
+                for="lastName"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Last name *</label
+              >
+              <input
+                type="text"
+                id="lastName"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- Nickname -->
+            <div class="md:w-8/12 md:col-span-2">
+              <label
+                for="accountNickname"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Nickname you would like to call this account</label
+              >
+              <input
+                type="text"
+                id="accountNickname"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- Address -->
+            <div class="md:w-8/12 md:col-span-2">
+              <label
+                for="streetAddress"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Street address *</label
+              >
+              <input
+                type="text"
+                id="streetAddress"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- City -->
+            <div>
+              <label
+                for="city"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >City *</label
+              >
+              <input
+                type="text"
+                id="city"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- State -->
+            <div>
+              <label
+                for="state"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >State *</label
+              >
+              <select
+                id="state"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700 cursor-pointer"
+              >
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="GU">Guam</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="MP">Northern Mariana Islands</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="PR">Puerto Rico</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VI">Virgin Islands</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+            </div>
+
+            <!-- Zipcode -->
+            <div>
+              <label
+                for="zipCode"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Zip Code *</label
+              >
+              <input
+                type="text"
+                id="zipCode"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label
+                for="phoneNumber"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Phone number *</label
+              >
+              <input
+                type="text"
+                id="phoneNumber"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+          </div>
+
+          <!-- Account Details -->
+          <div class="mb-6 lg:mb-8 px-1 md:w-8/12">
+            <!-- Routing Number -->
+            <div class="mb-5">
+              <label
+                for="routingNumber"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Routing number *
+                <a
+                  href="#"
+                  class="text-blue-600 hover:underline text-xs lg:text-sm ml-0.5"
+                  >How do I find the routing number?</a
+                ></label
+              >
+              <input
+                type="text"
+                id="routingNumber"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- Account Number -->
+            <div class="mb-5">
+              <label
+                for="accountNumber"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Account number *</label
+              >
+              <input
+                type="password"
+                id="accountNumber"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- Re-enter Account Number -->
+            <div class="mb-5">
+              <label
+                for="reEnterAccountNumber"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Re-enter Account number *</label
+              >
+              <input
+                type="password"
+                id="reEnterAccountNumber"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              />
+            </div>
+
+            <!-- Account Type -->
+            <div class="mb-5">
+              <label
+                for="accountTypeSelect"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-1"
+                >Account type *</label
+              >
+              <select
+                id="accountTypeSelect"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              >
+                <option>Checking</option>
+                <option>Savings</option>
+              </select>
+            </div>
+
+            <!-- Notes -->
+            <div>
+              <label
+                for="notes"
+                class="block text-sm lg:text-base font-semibold text-gray-700 mb-0.5"
+                >Notes
+                <span class="font-normal text-gray-500">(optional)</span></label
+              >
+              <p class="text-xs lg:text-sm text-gray-500 mb-1">
+                Notes are for your records only. They aren't sent to other
+                banks.
+              </p>
+              <textarea
+                id="notes"
+                rows="4"
+                class="w-full border border-gray-300 rounded-md p-2 text-gray-700"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex justify-start ml-1.5 lg:ml-0 space-x-4">
+            <button
+              id="add-recipient-btn"
+              class="cursor-pointer text-sm lg:text-base bg-blue-600 text-white font-semibold py-2.5 px-5 lg:px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Add Account
+            </button>
+            <button
+              id="cancel-add-recipient-btn"
+              class="cursor-pointer text-sm lg:text-base bg-gray-200 text-gray-700 font-semibold py-2.5 px-5 lg:px-6 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Help -->
+        <div
+          class="w-[95%] mt-2.5 lg:mt-0 mx-auto lg:w-5/12 bg-white border border-gray-200 p-5 rounded-lg shadow-sm hover:shadow-md lg:self-start"
+        >
+          <h3
+            class="font-bold text-lg mb-3 text-gray-500 border-b border-b-gray-300 pb-1.5"
+          >
+            Quick Help
+          </h3>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Add Account/Recipient Guide</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Video: How to send a domestic wire transfer?</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Video: How to send an international wire transfer?</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Success Popup -->
+        <div
+          id="add-recipient-success-overlay"
+          class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+        >
+          <div
+            class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm mx-auto relative text-center"
+          >
+            <div
+              class="flex items-center justify-center w-28 h-28 rounded-full bg-green-200 mx-auto mb-4"
+            >
+              <div
+                class="flex items-center justify-center w-24 h-24 rounded-full bg-green-400"
+              >
+                <span
+                  class="material-symbols-outlined text-white"
+                  style="font-size: 60px"
+                >
+                  check
+                </span>
+              </div>
+            </div>
+
+            <h3 class="text-3xl font-bold text-green-400 mb-1.5">Success!</h3>
+            <p class="text-sm lg:text-base font-medium text-gray-700 mb-6">
+              You've successfully added a new account.
+            </p>
+
+            <button
+              id="view-recipients-btn"
+              class="cursor-pointer bg-blue-600 text-white font-semibold py-3 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              View all recipients
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manage Recipients Tab -->
+      <div
+        id="manage-tab"
+        class="flex flex-col lg:flex-row lg:space-x-6 w-full"
+      >
+        <!-- Recipients List -->
+        <div class="overflow-x-auto mb-3 lg:mb-0">
+          <!-- Header -->
+          <h2 class="text-2xl lg:text-3xl font-bold mb-5 lg:mb-7 ml-1">
+            Manage Recipients
+          </h2>
+
+          <!-- Table -->
+          <table class="max-w-full divide-y-[1.5px] divide-gray-200">
+            <!-- Header -->
+            <thead class="bg-gray-100">
+              <tr class="font-semibold text-sm lg:text-base">
+                <th
+                  scope="col"
+                  class="px-4 lg:px-6 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
+                >
+                  Account
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 lg:px-6 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
+                >
+                  Status
+                </th>
+                <th
+                  scope="col"
+                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
+                >
+                  Date of Last Transfer
+                </th>
+                <th
+                  scope="col"
+                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
+                >
+                  Amount of Last Transfer
+                </th>
+                <th scope="col" class="relative px-4 lg:px-6 py-2 lg:py-3">
+                  <span class="sr-only">Edit/Delete</span>
+                </th>
+              </tr>
+            </thead>
+
+            <!-- Body -->
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap">
+                  <div class="text-sm lg:text-base font-semibold">
+                    2391048428
+                  </div>
+                  <div class="text-sm text-gray-500">
+                    Robin Brown (USA Bank)
+                  </div>
+                </td>
+                <td
+                  class="px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap text-sm text-gray-500"
+                >
+                  Verified
+                </td>
+                <td
+                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 whitespace-nowrap text-sm text-gray-500"
+                ></td>
+                <td
+                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 whitespace-nowrap text-sm text-gray-500"
+                ></td>
+                <td
+                  class="px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap text-right text-sm font-medium"
+                >
+                  <span
+                    id="delete-recipient-btn"
+                    class="material-symbols-outlined mr-2 md:mr-4 text-red-500 cursor-pointer hover:scale-105 hover:text-red-600"
+                    style="font-size: 25px"
+                  >
+                    delete
+                  </span>
+                  <span
+                    id="edit-recipient-btn"
+                    class="material-symbols-outlined text-blue-500 cursor-pointer hover:scale-105 hover:text-blue-600"
+                    style="font-size: 25px"
+                  >
+                    edit
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Quick Help -->
+        <div
+          class="w-[95%] mt-2.5 lg:mt-0 mx-auto lg:w-4/12 bg-white border border-gray-200 p-5 rounded-lg shadow-sm hover:shadow-md lg:self-start"
+        >
+          <h3
+            class="font-bold text-lg mb-3 text-gray-500 border-b border-b-gray-300 pb-1.5"
+          >
+            Quick Help
+          </h3>
+          <ul class="space-y-2.5 text-sm">
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Add Account/Recipient Guide</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Video: How to send a domestic wire transfer?</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline"
+                >Video: How to send an international wire transfer?</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gray-100 py-6 lg:pb-12 px-4 lg:px-8 font-verdana text-sm lg:text-xs text-gray-700 lg:text-gray-600 mt-6 lg:mt-8 w-full lg:w-[88%] mx-auto"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-col items-start justify-between text-center lg:text-left gap-y-1.5"
+      >
+        <span
+          class="flex items-center justify-center gap-1 lg:gap-2 font-semibold lg:justify-start mb-2"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-size: medium; font-weight: 600"
+          >
+            lock
+          </span>
+          Secure Area
+        </span>
+
+        <div
+          class="flex flex-wrap flex-col lg:flex-row items-start ml-1.5 lg:ml-0 justify-center lg:justify-end gap-x-2 gap-y-2.5 mb-2 lg:mb-0 text-blue-600"
+        >
+          <a href="#" class="hover:underline">Privacy</a>
+          <span class="hidden lg:inline-block">|</span>
+          <a href="#" class="hover:underline">Security</a>
+          <span class="hidden lg:inline-block">|</span>
+          <a href="#" class="hover:underline flex items-center">
+            Your Privacy Choices
+            <img
+              src="images/privacy-choices.png"
+              alt="Privacy Options Icon"
+              class="ml-1.5 h-3"
+            />
+          </a>
+        </div>
+
+        <div class="text-xs">
+          <p class="hidden lg:flex items-center gap-x-1">
+            Bank of America, N.A. Member FDIC.
+            <a href="#" class="text-blue-600 hover:underline"
+              >Equal Housing Lender</a
+            >
+            <span
+              class="material-symbols-outlined"
+              style="font-size: medium; font-weight: 600"
+            >
+              other_houses
+            </span>
+          </p>
+          <p class="mt-4">&copy; 2025 Bank of America Corporation.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"
+    ></script>
+    <script src="js/wire-ach.js"></script>
+  </body>
+</html>

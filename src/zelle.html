@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="images/boa-favicon.png"
+      type="image/x-icon"
+    />
+    <link href="./output.css" rel="stylesheet" />
+    <title>Bank of America - Pay with Zelle®</title>
+  </head>
+  <body
+    class="bg-white min-h-screen flex flex-col font-arial text-gray-700 relative"
+  >
+    <header class="bg-red-600 text-white py-4 px-5 md:px-10">
+      <div
+        class="max-w-screen-xl mx-auto lg:flex lg:items-center lg:justify-between text-xs"
+      >
+        <!-- Logo Header -->
+        <div
+          class="flex items-center justify-between lg:justify-center lg:space-x-5 mb-2 md:mb-0"
+        >
+          <img
+            src="images/boa-logo-white.png"
+            alt="Bank of America Logo"
+            class="h-auto lg:w-72 w-56"
+          />
+
+          <div id="menu-toggle" class="cursor-pointer lg:hidden">
+            <span id="menu-open" class="material-icons" style="font-size: 27px">
+              menu
+            </span>
+            <span
+              id="menu-close"
+              class="material-icons menu-hidden"
+              style="font-size: 27px"
+            >
+              close
+            </span>
+          </div>
+
+          <span class="text-lg hidden lg:block"
+            >Pay with Zelle<span class="text-sm align-top">®</span></span
+          >
+        </div>
+
+        <!-- Profile & Search Bar -->
+        <div
+          class="hidden lg:flex flex-wrap items-center justify-center md:justify-end gap-x-2.5 gap-y-1"
+        >
+          <a href="#">
+            <span class="text-base font-semibold border-r-2 pr-2.5"
+              >Matthew Rife</span
+            >
+          </a>
+          <a href="profile.html" class="hover:underline cursor-pointer font-verdana"
+            >Profile & Settings</a
+          >
+          <a href="#" class="hover:underline cursor-pointer font-verdana">Saved Items</a>
+          <a href="#" class="hover:underline cursor-pointer font-verdana">Log Out</a>
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              class="bg-red-500 font-verdana text-white tracking-wide placeholder-gray-50 rounded-md p-2 pr-8 text-xs focus:outline-none focus:ring-1 focus:ring-white"
+            />
+            <span
+              class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-white text-base cursor-pointer"
+              style="font-size: 19px"
+              >search</span
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white py-3 px-4 md:px-8">
+      <!-- Tabs -->
+      <div
+        class="hidden max-w-screen-xl mx-auto lg:flex flex-col md:flex-row items-center justify-between"
+      >
+        <ul
+          id="main-nav-tabs"
+          class="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-sm font-semibold text-gray-700 border-b border-gray-200 w-full md:w-auto"
+        >
+          <li>
+            <a
+              href="#send-money"
+              data-tab="send-money-tab"
+              class="block py-2 px-3 hover:text-red-600 hover:scale-110"
+              >Send Money</a
+            >
+          </li>
+          <li>
+            <a
+              href="#settings"
+              data-tab="settings-tab"
+              class="block py-2 px-3 hover:text-red-600 hover:scale-110"
+              >Manage Settings</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mobile sidebar -->
+      <div
+        id="sidebar"
+        class="flex items-start flex-col text-white space-y-4 px-7 top-0 left-0 z-30 w-10/12 sm:w-80 h-full box-border bg-red-600 fixed transform transition-transform -translate-x-full duration-300 ease-in-out"
+      >
+        <span class="w-48 my-8"
+          ><img src="images/boa-logo-white.png" alt="Executive Managers Logo"
+        /></span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">sync_alt</span>
+          <a
+            href="#send-money"
+            data-tab="send-money-tab"
+            class="text-base font-bold"
+            >Send Money</a
+          >
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">settings</span>
+          <a
+            href="#settings"
+            data-tab="settings-tab"
+            class="text-base font-bold"
+            >Manage Settings</a
+          >
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5 mt-2.5">
+          <span class="material-symbols-outlined">person</span>
+          <a href="profile.html" class="text-base font-bold">Profile</a>
+        </span>
+
+        <span class="flex items-center justify-center space-x-3.5">
+          <span class="material-symbols-outlined">logout</span>
+          <a href="index.html"><p class="text-base font-bold">Logout</p></a>
+        </span>
+      </div>
+    </nav>
+
+    <!-- Main Content-->
+    <main class="container lg:w-11/12 mx-auto p-4 lg:p-6">
+      <!-- Send Money Tab -->
+      <div id="send-money-tab" class="hidden">
+        <div class="flex flex-col lg:flex-row lg:space-x-5">
+          <!-- Choose Recipient -->
+          <div class="flex-grow bg-white mb-6 lg:mb-0 lg:p-1.5">
+            <h3 class="text-xl lg:text-3xl font-semibold mb-5">
+              Who would you like to pay?
+            </h3>
+
+            <!-- Recipient Input -->
+            <div class="relative mb-3.5 lg:mb-6">
+              <input
+                id="choose-recipient"
+                type="text"
+                placeholder="Choose recipient..."
+                class="w-full border border-gray-300 rounded-md p-2 pl-3 text-gray-700 focus:ring-blue-500 focus:border-blue-500"
+              />
+              <button
+                id="clear-search-btn"
+                class="absolute right-12 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 flex items-center cursor-pointer"
+                aria-label="Clear search"
+              >
+                <span class="material-symbols-outlined mr-6">close</span>
+              </button>
+              <button
+                class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 cursor-pointer text-white font-semibold py-1 px-3.5 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                Pay
+              </button>
+            </div>
+
+            <!-- Search Matches -->
+            <div class="mb-3 lg:mb-5 space-y-3">
+              <div
+                class="flex items-center space-x-1.5 lg:space-x-3 cursor-pointer hover:bg-gray-50 p-2.5 rounded-md"
+              >
+                <div
+                  class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold border-[1.5px] border-gray-400"
+                >
+                  NA
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-800">Nina Grehi</p>
+                  <p class="text-xs text-gray-500">nina.grehi@yahoo.com</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- List Header -->
+            <h3 class="text-2xl font-bold mb-2 lg:mb-3 ml-1">Recipients</h3>
+            <div class="mb-3 lg:mb-5 ml-1">
+              <a href="#" class="flex items-center font-semibold text-blue-500">
+                <span class="material-symbols-outlined mr-1">add_circle</span>
+                <span class="hover:underline">Add recipient</span>
+              </a>
+            </div>
+
+            <!-- Recipient List -->
+            <div class="space-y-3 mx-1">
+              <div
+                class="flex items-center justify-between p-3 border border-gray-200 rounded-md"
+              >
+                <div class="flex items-center space-x-1.5 lg:space-x-3">
+                  <div
+                    class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold border-[1.5px] border-gray-400"
+                  >
+                    NG
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">
+                      Nina Grehi
+                    </p>
+                    <p class="text-xs text-gray-500">nina.grehi@yahoo.com</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-3.5 lg:space-x-2.5 text-sm">
+                  <span
+                    id="delete-recipient-btn"
+                    class="material-symbols-outlined text-red-500 cursor-pointer hover:scale-105 hover:text-red-600"
+                    style="font-size: 25px"
+                  >
+                    delete
+                  </span>
+                  <span
+                    id="edit-recipient-btn"
+                    class="material-symbols-outlined text-blue-500 cursor-pointer hover:scale-105 hover:text-blue-600"
+                    style="font-size: 25px"
+                  >
+                    edit
+                  </span>
+                  <button
+                    class="bg-blue-600 text-white font-semibold cursor-pointer py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    Pay
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between p-3 border border-gray-200 rounded-md"
+              >
+                <div class="flex items-center space-x-1.5 lg:space-x-3">
+                  <div
+                    class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold border-[1.5px] border-gray-400"
+                  >
+                    JR
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">
+                      Jason Rather
+                    </p>
+                    <p class="text-xs text-gray-500">555-555-8899</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-3.5 lg:space-x-2.5 text-sm">
+                  <span
+                    id="delete-recipient-btn"
+                    class="material-symbols-outlined text-red-500 cursor-pointer hover:scale-105 hover:text-red-600"
+                    style="font-size: 25px"
+                  >
+                    delete
+                  </span>
+                  <span
+                    id="edit-recipient-btn"
+                    class="material-symbols-outlined text-blue-500 cursor-pointer hover:scale-105 hover:text-blue-600"
+                    style="font-size: 25px"
+                  >
+                    edit
+                  </span>
+                  <button
+                    class="bg-blue-600 text-white font-semibold cursor-pointer py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    Pay
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between p-3 border border-gray-200 rounded-md"
+              >
+                <div class="flex items-center space-x-1.5 lg:space-x-3">
+                  <div
+                    class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold border-[1.5px] border-gray-400"
+                  >
+                    RB
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-gray-800">
+                      Robin Brown
+                    </p>
+                    <p class="text-xs text-gray-500">e***b@reybam.com</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-3.5 lg:space-x-2.5 text-sm">
+                  <span
+                    id="delete-recipient-btn"
+                    class="material-symbols-outlined text-red-500 cursor-pointer hover:scale-105 hover:text-red-600"
+                    style="font-size: 25px"
+                  >
+                    delete
+                  </span>
+                  <span
+                    id="edit-recipient-btn"
+                    class="material-symbols-outlined text-blue-500 cursor-pointer hover:scale-105 hover:text-blue-600"
+                    style="font-size: 25px"
+                  >
+                    edit
+                  </span>
+                  <button
+                    class="bg-blue-600 text-white font-semibold cursor-pointer py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    Pay
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Help -->
+          <div
+            class="w-full mb-6 lg:mb-0 lg:w-[29%] lg:mt-2.5 bg-white p-4 lg:p-5 rounded-lg shadow-md lg:self-start border border-gray-200"
+          >
+            <!-- Header -->
+            <h3
+              class="font-bold text-lg mb-3 text-gray-500 border-b border-b-gray-300 pb-1.5"
+            >
+              Quick Help
+            </h3>
+
+            <!-- Details -->
+            <ul class="space-y-3.5 text-sm lg:text-base">
+              <details class="group">
+                <summary
+                  class="flex justify-between items-center text-blue-600 font-semibold"
+                >
+                  <span>What is Zelle<span class="text-sm align-top">®</span>?</span>
+                  <span
+                    class="material-symbols-outlined group-open:rotate-180 transition-transform cursor-pointer"
+                    >expand_more</span
+                  >
+                </summary>
+                <p
+                  class="mt-2 text-sm p-2.5 lg:p-2 bg-gray-100 text-justify rounded-xs"
+                >
+                  Zelle® is a fast, free, and easy way to send money to and
+                  receive money from people you trust, directly from your bank
+                  account.
+                </p>
+              </details>
+
+              <details class="group">
+                <summary
+                  class="flex justify-between items-center text-blue-600 font-semibold"
+                >
+                  Contact not yet enrolled in Zelle?
+                  <span
+                    class="material-symbols-outlined group-open:rotate-180 transition-transform cursor-pointer"
+                    >expand_more</span
+                  >
+                </summary>
+                <p
+                  class="mt-2 text-sm p-2.5 lg:p-2 bg-gray-100 text-justify rounded-xs"
+                >
+                  You can still send money to them. They will receive an email
+                  or text notification with instructions on how to enroll to
+                  receive the money.
+                </p>
+              </details>
+
+              <details class="group">
+                <summary
+                  class="flex justify-between items-center text-blue-600 font-semibold"
+                >
+                  <span>How do I receive money using Zelle<span class="text-sm align-top">®</span>?</span>
+                  <span
+                    class="material-symbols-outlined group-open:rotate-180 transition-transform cursor-pointer"
+                    >expand_more</span
+                  >
+                </summary>
+                <p
+                  class="mt-2 text-sm p-2.5 lg:p-2 bg-gray-100 text-justify rounded-xs"
+                >
+                  You can receive money directly into your checking or savings
+                  account. If you're enrolled, you'll receive a notification
+                  when money is sent to you.
+                </p>
+              </details>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="settings-tab" class="hidden">
+        <div class="flex flex-col lg:flex-row lg:space-x-5">
+          <!-- Manage Zelle Recipients -->
+          <div class="flex-grow bg-white mb-6 lg:mb-0">
+            <h3 class="text-2xl lg:text-3xl font-bold mb-6 ml-1">
+              Manage Zelle<span class="text-sm align-top">®</span> Settings
+            </h3>
+
+            <div
+              class="border border-gray-200 rounded-md p-4 flex items-center justify-between mb-4 hover:bg-gray-50"
+            >
+              <div class="flex items-center space-x-3">
+                <div
+                  class="flex-shrink-0 h-11 w-11 rounded-full border-[1.5px] border-gray-400 bg-gray-200 flex items-center justify-center text-gray-600 font-bold"
+                >
+                  <span
+                    class="material-symbols-outlined"
+                    style="font-size: 27px"
+                    >phone_iphone</span
+                  >
+                </div>
+
+                <div>
+                  <p class="text-sm lg:text-base font-semibold text-gray-800">
+                    666-000-**-**
+                  </p>
+                  <p class="text-xs lg:text-sm text-gray-500">My Checking</p>
+                </div>
+              </div>
+
+              <div class="flex space-x-4 lg:space-x-5 items-center mr-3">
+                <span
+                  id="delete-recipient-btn"
+                  class="material-symbols-outlined text-red-500 cursor-pointer hover:scale-105 hover:text-red-600"
+                  style="font-size: 26px"
+                >
+                  delete
+                </span>
+                <span
+                  id="edit-recipient-btn"
+                  class="material-symbols-outlined text-blue-500 cursor-pointer hover:scale-105 hover:text-blue-600"
+                  style="font-size: 26px"
+                >
+                  edit
+                </span>
+              </div>
+            </div>
+
+            <div class="mb-5 ml-1">
+              <a
+                href="#"
+                class="text-blue-600 hover:underline hover:underline-offset-1 text-sm lg:text-base font-semibold"
+                >Add mobile number or email</a
+              >
+            </div>
+          </div>
+
+          <!-- Quick Help -->
+          <div
+            class="w-full mb-6 lg:mb-0 lg:w-[29%] lg:mt-2.5 bg-white p-4 lg:p-5 rounded-lg shadow-md lg:self-start border border-gray-200"
+          >
+            <!-- Header -->
+            <h3
+              class="font-bold text-lg mb-3 text-gray-500 border-b border-b-gray-300 pb-1.5"
+            >
+              Quick Help
+            </h3>
+
+            <!-- Details -->
+            <ul class="space-y-3.5 text-sm lg:text-base">
+              <details class="group">
+                <summary
+                  class="flex justify-between items-center text-blue-600 font-semibold"
+                >
+                  <span>What is Zelle<span class="text-sm align-top">®</span>?</span>
+                  <span
+                    class="material-symbols-outlined group-open:rotate-180 transition-transform cursor-pointer"
+                    >expand_more</span
+                  >
+                </summary>
+                <p
+                  class="mt-2 text-sm p-2.5 lg:p-2 bg-gray-100 text-justify rounded-xs"
+                >
+                  Zelle® is a fast, free, and easy way to send money to and
+                  receive money from people you trust, directly from your bank
+                  account.
+                </p>
+              </details>
+
+              <details class="group">
+                <summary
+                  class="flex justify-between items-center text-blue-600 font-semibold"
+                >
+                  <span>How do I receive money using Zelle<span class="text-sm align-top">®</span>?</span>
+                  <span
+                    class="material-symbols-outlined group-open:rotate-180 transition-transform cursor-pointer"
+                    >expand_more</span
+                  >
+                </summary>
+                <p
+                  class="mt-2 text-sm p-2.5 lg:p-2 bg-gray-100 text-justify rounded-xs"
+                >
+                  You can receive money directly into your checking or savings
+                  account. If you're enrolled, you'll receive a notification
+                  when money is sent to you.
+                </p>
+              </details>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      id="footer"
+      class="bg-gray-100 py-6 lg:pb-12 px-4 lg:px-8 font-verdana text-sm lg:text-xs text-gray-700 lg:text-gray-600 mt-6 lg:mt-8 w-full lg:w-[88%] mx-auto"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-col items-start justify-between text-center lg:text-left gap-y-1.5"
+      >
+        <span
+          class="flex items-center justify-center gap-1 lg:gap-2 font-semibold lg:justify-start mb-2"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-size: medium; font-weight: 600"
+          >
+            lock
+          </span>
+          Secure Area
+        </span>
+
+        <div
+          class="flex flex-wrap flex-col lg:flex-row items-start ml-1.5 lg:ml-0 justify-center lg:justify-end gap-x-2 gap-y-2.5 mb-2 lg:mb-0 text-blue-600"
+        >
+          <a href="#" class="hover:underline">Privacy</a>
+          <span class="hidden lg:inline-block">|</span>
+          <a href="#" class="hover:underline">Security</a>
+          <span class="hidden lg:inline-block">|</span>
+          <a href="#" class="hover:underline flex items-center">
+            Your Privacy Choices
+            <img
+              src="images/privacy-choices.png"
+              alt="Privacy Options Icon"
+              class="ml-1.5 h-3"
+            />
+          </a>
+        </div>
+
+        <div class="text-xs">
+          <p class="hidden lg:flex items-center gap-x-1">
+            Bank of America, N.A. Member FDIC.
+            <a href="#" class="text-blue-600 hover:underline"
+              >Equal Housing Lender</a
+            >
+            <span
+              class="material-symbols-outlined"
+              style="font-size: medium; font-weight: 600"
+            >
+              other_houses
+            </span>
+          </p>
+          <p class="mt-4">&copy; 2025 Bank of America Corporation.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/zelle.js"></script>
+  </body>
+</html>
