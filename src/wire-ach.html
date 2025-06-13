@@ -232,11 +232,9 @@
                 class="flex flex-col justify-start space-y-2 md:flex-row md:items-center md:justify-between w-full md:space-x-3"
               >
                 <select
-                  id="recipient"
-                  class="flex-grow border border-gray-300 rounded-md p-2 cursor-pointer"
-                >
-                  <option>ROBIN BROWN (USA Bank)</option>
-                </select>
+                  id="recipient-account"
+                  class="flex-grow w-full border border-gray-300 rounded-md p-2 cursor-pointer"
+                ></select>
                 <a
                   href="?tab=recipient-tab"
                   class="text-blue-500 hover:underline underline-offset-2 whitespace-nowrap ml-2 lg:ml-0"
@@ -482,7 +480,9 @@
               </p>
 
               <!-- Transfer details -->
-              <div class="text-gray-700 text-sm lg:text-base space-y-3 mb-8 px-2 lg:px-0">
+              <div
+                class="text-gray-700 text-sm lg:text-base space-y-3 mb-8 px-2 lg:px-0"
+              >
                 <div class="flex">
                   <p class="font-semibold w-1/3">From:</p>
                   <p id="confirm-account-source" class="w-2/3"></p>
@@ -1088,76 +1088,33 @@
               <tr class="font-semibold text-sm lg:text-base">
                 <th
                   scope="col"
-                  class="px-4 lg:px-6 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
+                  class="px-4 lg:px-6 text-lg md:text-sm py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
                 >
-                  Account
+                  Recipients
                 </th>
                 <th
                   scope="col"
-                  class="px-4 lg:px-6 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
+                  class="hidden md:table-cell px-4 lg:px-6 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
                 >
                   Status
                 </th>
                 <th
                   scope="col"
-                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
+                  class="hidden md:table-cell px-4 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
                 >
                   Date of Last Transfer
                 </th>
-                <th
-                  scope="col"
-                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 text-left text-gray-500 uppercase tracking-wider"
-                >
-                  Amount of Last Transfer
-                </th>
-                <th scope="col" class="relative px-4 lg:px-6 py-2 lg:py-3">
+                <th scope="col" class="relative px-2 lg:px-6 py-2 lg:py-3">
                   <span class="sr-only">Edit/Delete</span>
                 </th>
               </tr>
             </thead>
 
             <!-- Body -->
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr class="hover:bg-gray-50">
-                <td class="px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap">
-                  <div class="text-sm lg:text-base font-semibold">
-                    2391048428
-                  </div>
-                  <div class="text-sm text-gray-500">
-                    Robin Brown (USA Bank)
-                  </div>
-                </td>
-                <td
-                  class="px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap text-sm text-gray-500"
-                >
-                  Verified
-                </td>
-                <td
-                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 whitespace-nowrap text-sm text-gray-500"
-                ></td>
-                <td
-                  class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 whitespace-nowrap text-sm text-gray-500"
-                ></td>
-                <td
-                  class="px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap text-right text-sm font-medium"
-                >
-                  <span
-                    id="delete-recipient-btn"
-                    class="material-symbols-outlined mr-2 md:mr-4 text-red-500 cursor-pointer hover:scale-105 hover:text-red-600"
-                    style="font-size: 25px"
-                  >
-                    delete
-                  </span>
-                  <span
-                    id="edit-recipient-btn"
-                    class="material-symbols-outlined text-blue-500 cursor-pointer hover:scale-105 hover:text-blue-600"
-                    style="font-size: 25px"
-                  >
-                    edit
-                  </span>
-                </td>
-              </tr>
-            </tbody>
+            <tbody
+              id="recipient-list"
+              class="bg-white divide-y divide-gray-200"
+            ></tbody>
           </table>
         </div>
 

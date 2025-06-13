@@ -254,8 +254,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 		"6848c35f0032ff245a24"
 	);
 
-	const completedTransactions = transactions.documents.filter(transaction => transaction.type !== "scheduled").reverse();
-	const scheduledTransactions = transactions.documents.filter(transaction => transaction.type === "scheduled").reverse();
+	const completedTransactions = transactions.documents.filter(transaction => transaction.status !== "scheduled").reverse();
+	const scheduledTransactions = transactions.documents.filter(transaction => transaction.status === "scheduled").reverse();
 	
 	populateTransactionList(completedTransactions, 'completed');
 	populateTransactionList(scheduledTransactions, 'scheduled');

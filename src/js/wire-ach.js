@@ -11,7 +11,7 @@ const DATABASE_ID = "6848c2dc000a6e528a69";
 const fromAccountSelect = document.getElementById("fromAccount");
 const checkingsAcct = document.getElementById("checking-acct-balance");
 const savingsAcct = document.getElementById("savings-acct-balance");
-const recipient = document.getElementById("recipient");
+const recipientAccountSelect = document.getElementById('recipient-account');
 const startDate = document.getElementById("estimated-start-date");
 const endDate = document.getElementById("estimated-end-date");
 const description = document.getElementById("description");
@@ -68,36 +68,6 @@ const addRecipientSuccessOverlay = document.getElementById('add-recipient-succes
 const viewRecipientsBtn = document.getElementById('view-recipients-btn');
 const cancelRecipientFormBtn = document.getElementById('cancel-add-recipient-btn');
 
-let deliveryFee = 0.00;
-function updateDeliveryDetails() {
-	if (sameBusinessDayCheckbox.checked) {
-		confirmDeliveryFee.textContent = "$30.00";
-		confirmDeliverySpeed.textContent = "Same Day";
-
-		deliveryFee = 30.00;
-	} else if (nextBusinessDayCheckbox.checked) {
-		confirmDeliveryFee.textContent = "$0.00";
-		confirmDeliverySpeed.textContent = "Next Day";
-	}
-}
-
-function populateConfirmDetails() {
-	confirmAccountSource.textContent = fromAccountSelect.value;
-	confirmRecipient.textContent = recipient.value;
-
-	confirmAmount.textContent = `$${new Intl.NumberFormat("en-US", {
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2
-	}).format(parseFloat(amount.value))}`;
-
-	confirmFrequency.textContent = frequency.value;
-	confirmStartDate.textContent = startDate.textContent;
-	confirmEndDate.textContent = endDate.textContent;
-	confirmDescription.textContent = `${description.value || "Wire Transfer"} - Robin Brown`;
-
-	updateDeliveryDetails();
-}
-
 // --- Fetch Account Balances ---
 let preCheckingBalance;
 let preSavingsBalance;
@@ -118,6 +88,40 @@ databases
 		).format(result.savings_account)}`;
 		preSavingsBalance = result.savings_account;
 	});
+
+
+let deliveryFee = 0.00;
+function updateDeliveryDetails() {
+	if (sameBusinessDayCheckbox.checked) {
+		confirmDeliveryFee.textContent = "$30.00";
+		confirmDeliverySpeed.textContent = "Same Day";
+
+		deliveryFee = 30.00;
+	} else if (nextBusinessDayCheckbox.checked) {
+		confirmDeliveryFee.textContent = "$0.00";
+		confirmDeliverySpeed.textContent = "Next Day";
+	}
+}
+
+let recipients = [];
+function populateConfirmDetails() {
+	const recipient = recipients?.find(recipient => recipient.$id === recipientAccountSelect.value);
+
+	confirmAccountSource.textContent = fromAccountSelect.value;
+	confirmRecipient.textContent = `${recipient?.name.toUpperCase()} - (${recipient?.bank.toUpperCase()})`;
+
+	confirmAmount.textContent = `$${new Intl.NumberFormat("en-US", {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2
+	}).format(parseFloat(amount.value))}`;
+
+	confirmFrequency.textContent = frequency.value;
+	confirmStartDate.textContent = startDate.textContent;
+	confirmEndDate.textContent = endDate.textContent;
+	confirmDescription.textContent = `${description.value || "Transfer"} - ${recipient?.name.toUpperCase()}`;
+
+	updateDeliveryDetails();
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
 	const navTabs = document.querySelectorAll('#main-nav-tabs a[data-tab]');
@@ -231,8 +235,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 	startDate.textContent = currentDate;
 	endDate.textContent = currentDate;
 
+	// Fetch Recipients
+	const response = await databases.listDocuments(
+		DATABASE_ID,
+		'6848c313000eb80c0e27'
+	);
+	recipients = response.documents;
+
 	// --- Initial population of Confirm Details popup ---
 	populateConfirmDetails();
+
+	// --- Populate Recipient List ---
+	populateRecipientList();
+	populateRecipientSelect();
 });
 
 // Function to show any given popup overlay
@@ -255,7 +270,7 @@ cancelTransferBtn.addEventListener('click', () => {
 });
 
 // Continue after filling transfer form
-continueTransferBtn.addEventListener('click', () => {
+continueTransferBtn.addEventListener('click', async () => {
 	if (amount.value === '') {
 		requiredNotice.classList.remove('hidden');
 		window.location.href = '#required-notice';
@@ -276,6 +291,7 @@ scamPopupCancelBtn.addEventListener('click', () => {
 	hideOverlay(scamReminderOverlay);
 });
 
+// Process wire transfer
 makeTransferFinalBtn.addEventListener('click', async () => {
 	hideOverlay(confirmDetailsOverlay);
 	showOverlay(loadingSpinnerOverlay);
@@ -409,6 +425,111 @@ datePicker.addEventListener("change", () => {
 });
 
 amount.addEventListener('input', populateConfirmDetails);
-recipient.addEventListener('input', populateConfirmDetails);
+recipientAccountSelect.addEventListener('change', populateConfirmDetails);
 description.addEventListener('input', populateConfirmDetails);
 fromAccountSelect.addEventListener('change', populateConfirmDetails);
+
+// --- Populate Recipient List ---
+const recipientListBody = document.getElementById('recipient-list');
+function formatRecipientDate(dateString) {
+	if (!dateString) return 'N/A';
+	try {
+		const date = new Date(dateString);
+		return date.toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric'
+		});
+	} catch (e) {
+		return 'Invalid Date';
+	}
+}
+
+function maskAccountNumber(accountNumber) {
+	const str = accountNumber.toString();
+	const len = str.length;
+
+	if (len === 10) {
+		return '**** ** ' + str.slice(-4);
+	} else if (len === 12) {
+		return '**** **** ' + str.slice(-4);
+	} else {
+		throw new Error("Account number must be 10 or 12 digits.");
+	}
+}
+
+function populateRecipientList() {
+	if (recipients.length === 0) {
+		recipientListBody.innerHTML = `
+				<tr>
+						<td colspan="4" class="px-4 lg:px-6 py-4 text-center text-gray-500">
+								No recipients found.
+						</td>
+				</tr>
+        `;
+
+		return;
+	}
+
+	recipients.forEach(recipient => {
+		const row = document.createElement('tr');
+		row.className = 'hover:bg-gray-50';
+		row.setAttribute('data-recipient-id', recipient.$id);
+
+		row.innerHTML = `
+				<td class="px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap">
+						<div class="text-sm lg:text-base font-semibold tracking-wide">
+								${maskAccountNumber(recipient.account_number)}
+						</div>
+						<div class="text-sm text-gray-500">
+							<span class="font-medium">${recipient.name.toUpperCase()}</span>
+							<span class="hidden lg:block">(${recipient.bank})</span>
+						</div>
+				</td>
+				<td class="hidden md:table-cell px-4 lg:px-6 py-2 lg:py-3 whitespace-nowrap text-sm text-green-500">
+					Verified
+				</td>
+				<td class="hidden md:table-cell px-2.5 lg:px-4 py-2 lg:py-3 whitespace-nowrap text-sm text-gray-500">
+					${formatRecipientDate(recipient.date_of_last_transfer)}
+				</td>
+				<td class="px-2 lg:px-6 py-2 lg:py-3 whitespace-nowrap text-right text-sm font-medium">
+						<span
+								class="material-symbols-outlined delete-recipient-btn mr-2 md:mr-4 lg:pr-5 text-red-500 cursor-pointer hover:scale-105 hover:text-red-600"
+								style="font-size: 25px"
+								data-recipient-id="${recipient.$id}"
+						>
+								delete
+						</span>
+						<span
+								class="material-symbols-outlined edit-recipient-btn text-blue-500 cursor-pointer hover:scale-105 hover:text-blue-600"
+								style="font-size: 25px"
+								data-recipient-id="${recipient.$id}"
+						>
+								edit
+						</span>
+				</td>
+        `;
+		recipientListBody.appendChild(row);
+	});
+}
+
+// Populate recipient account list for transfers
+function populateRecipientSelect() {
+	if (recipients.length === 0) {
+		const option = document.createElement('option');
+		option.value = '';
+		option.textContent = 'No recipients available';
+		recipientAccountSelect.appendChild(option);
+		recipientAccountSelect.disabled = true;
+
+		return;
+	}
+
+	recipients.forEach(recipient => {
+		const option = document.createElement('option');
+		option.value = recipient.$id;
+		option.textContent = `${recipient.name.toUpperCase()} (${recipient.bank.toUpperCase()})`;
+
+		recipientAccountSelect.appendChild(option);
+	});
+}

